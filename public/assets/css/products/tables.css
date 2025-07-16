@@ -1,0 +1,28 @@
+    #myTable {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        font-size: 16px;
+        text-align: left;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    #myTable th, #myTable td {
+        padding: 12px 15px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    #myTable thead {
+        background-color: #f4f4f4;
+        color: #333;
+    }
+
+    #myTable tbody tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    #myTable tbody tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+    

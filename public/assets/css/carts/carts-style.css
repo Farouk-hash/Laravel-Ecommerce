@@ -1,0 +1,97 @@
+/* Cart Page Styles */
+
+/* Table Header Labels */
+.cart-table-head label {
+    margin-left: 5px;
+    font-size: 12px;
+}
+
+/* Cart Buttons Container */
+.cart-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+/* Base Button Styles */
+.cart-buttons .boxed-btn {
+    flex: 1;
+    min-width: 120px;
+    padding: 10px 0;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 999px;
+    border: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s ease;
+    text-align: center;
+    margin-bottom: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+}
+
+/* Update Cart Button */
+.cart-buttons .boxed-btn[name="update_cart"] {
+    background-color: #F28123;
+    color: white;
+}
+
+.cart-buttons .boxed-btn[name="update_cart"]:hover {
+    background-color: #e6721a;
+}
+
+/* Remove Selected Button */
+.cart-buttons .boxed-btn[name="remove_selected"] {
+    background-color: #dc3545;
+    color: white;
+}
+
+.cart-buttons .boxed-btn[name="remove_selected"]:hover {
+    background-color: #c82333;
+}
+
+/* Save for Later Button */
+.cart-buttons .boxed-btn[name="save_for_later"] {
+    background-color: #28a745;
+    color: white;
+}
+
+.cart-buttons .boxed-btn[name="save_for_later"]:hover {
+    background-color: #218838;
+}
+
+/* Checkout Button */
+.cart-buttons .boxed-btn.black {
+    background-color: #222;
+    color: white;
+}
+
+.cart-buttons .boxed-btn.black:hover {
+    background-color: #111;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .cart-buttons {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .cart-buttons .boxed-btn {
+        min-width: 100%;
+        margin-bottom: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .cart-buttons .boxed-btn {
+        font-size: 13px;
+        padding: 12px 0;
+    }
+    
+    .cart-table-head label {
+        font-size: 11px;
+    }
+}

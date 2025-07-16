@@ -1,0 +1,265 @@
+ /* Order Summary Card */
+        .order-summary-card {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(0, 0, 0, 0.125);
+        }
+
+        .order-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            align-items: start;
+        }
+
+        .order-info-item h4 {
+            color: var(--gray);
+            font-size: 14px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .order-info-item h4 i {
+            margin-right: 8px;
+            color: var(--primary);
+        }
+
+        .order-info-item p {
+            color: var(--dark);
+            font-size: 16px;
+            font-weight: 500;
+            margin: 0;
+        }
+
+        /* Status Badge Styles */
+        .status-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-transform: capitalize;
+            white-space: nowrap;
+        }
+
+        .status-badge i {
+            font-size: 10px;
+        }
+
+        /* Status Colors */
+        .status-pending {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+
+        .status-processing {
+            background-color: #cce5ff;
+            color: #0056b3;
+            border: 1px solid #80bdff;
+        }
+
+        .status-shipped {
+            background-color: #e7f3ff;
+            color: #0066cc;
+            border: 1px solid #b3d9ff;
+        }
+
+        .status-delivered, .status-completed {
+            background-color: #d1f2d1;
+            color: #155724;
+            border: 1px solid #5cb85c;
+        }
+
+        .status-canceled, .status-cancelled {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .status-refunded {
+            background-color: #e2e3e5;
+            color: #383d41;
+            border: 1px solid #c6c8ca;
+        }
+
+        .status-failed {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .status-unknown {
+            background-color: #f8f9fa;
+            color: #6c757d;
+            border: 1px solid #dee2e6;
+        }
+
+        /* Spinning animation for processing status */
+        .status-processing i {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Back Button */
+        .order-actions {
+            margin-top: 20px;
+        }
+
+        .btn-back {
+            background-color: var(--secondary);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-back:hover {
+            background-color: var(--gray-dark);
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .btn-back i {
+            margin-right: 8px;
+        }
+
+        /* Table Header */
+        .table-header {
+            background: var(--light);
+            padding: 15px 20px;
+            border-radius: 12px 12px 0 0;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .table-header h3 {
+            margin: 0;
+            color: var(--dark);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .table-header h3 i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+
+        /* Product Image */
+        .product-image-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .product-image {
+            width: 200px;
+            height: 100px;
+            border-radius: 8px;
+            object-fit: cover;
+            border: 2px solid var(--light);
+            transition: transform 0.3s ease;
+        }
+
+        .product-image:hover {
+            transform: scale(1.05);
+        }
+
+        /* Product Info */
+        .product-name {
+            color: var(--dark);
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .product-description {
+            color: var(--gray);
+            font-size: 13px;
+            line-height: 1.4;
+            max-width: 250px;
+        }
+
+        .quantity-badge {
+            background: var(--info);
+            color: var(--white);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .unit-price, .product-total {
+            font-weight: 600;
+            color: var(--success);
+            font-size: 14px;
+        }
+
+        .product-total {
+            font-size: 16px;
+        }
+
+        /* Table Footer */
+        .orders-table-foot {
+            background: var(--light);
+        }
+
+        .orders-table-foot td {
+            padding: 20px 12px;
+            font-size: 16px;
+        }
+
+        .total-label {
+            text-align: right;
+            color: var(--dark);
+        }
+
+        .grand-total {
+            color: var(--success);
+            font-size: 18px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .order-info-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 15px;
+            }
+            
+            .product-image {
+                width: 60px;
+                height: 60px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .order-summary-card {
+                padding: 20px;
+            }
+            
+            .order-info-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .product-description {
+                max-width: 200px;
+            }
+            
+            .status-badge {
+                font-size: 11px;
+                padding: 4px 8px;
+            }
+        }
