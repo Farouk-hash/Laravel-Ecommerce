@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Http\View\Composers\LanguageComposer;
+use App\Models\User;
+use App\Observers\UserObserver;
 use Blade;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
@@ -38,6 +40,9 @@ class AppServiceProvider extends ServiceProvider
             'Adminpanel.components.footer'=>'adminpanel-footer',
 
         ]);
+
+        User::observe(UserObserver::class);
+
     }
     
 }

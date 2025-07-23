@@ -21,7 +21,9 @@ Route::prefix('users')->controller(AuthController::class)->group(function() {
 
 Route::prefix('user')->controller(User::class)->group(function(){
     Route::get('/' , 'index')->name('user.profile');
-
+    Route::get('/profile/{user_id}' , 'update_profile_form')->name('user.get-update-profile');
+    Route::put('/profile/{user_id}' , 'update_profile')->name('user.update-profile');
+ 
     // Chat Routes 
     Route::get('/messages','messages')->name('user.messages'); // GET ALL MESSAGES ; 
     Route::get('/messages/{receiver_id}' , 'chat')->name('user.chat'); // GET ALL MESSAGES RELATED TO RECEIVER OR SENDER ; 

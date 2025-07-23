@@ -473,14 +473,23 @@
     </style>
 </head>
 <body>
+    @php
+    $imageUrl = $user_informations->file_object_key
+        ? Illuminate\Support\Facades\Storage::url($user_informations->file_object_key)
+        : "https://ui-avatars.com/api/?name={$user_informations->name}&background=051922&color=ffffff&size=200&rounded=true";
+    @endphp
+
+
     <!-- Account Header -->
     <div class="account-header">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6">
                     <div class="d-flex align-items-center">
-                        <img src="https://ui-avatars.com/api/?name={{$user_informations->name}}&background=051922&color=ffffff&size=200&rounded=true" 
-                             alt="Profile" class="profile-avatar">                           
+                        <img 
+                        src="{{$imageUrl}}"
+                        alt="Profile" 
+                        class="profile-avatar">                           
                         <div style="padding-left:15px;">
                             <h2 class="account-name">{{$user_informations->name}}</h2>
                             <p class="member-since">
@@ -532,7 +541,7 @@
                 <div class="account-card">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h4><i class="fas fa-user mr-2"></i>Account Information</h4>
-                        <a href="/profile/edit" class="link-edit">Edit</a>
+                        <a href="{{route('user.get-update-profile' , Auth::id())}}" class="link-edit">Edit</a>
                     </div>
                     <div class="info-item">
                         <span class="info-label">Full Name</span>

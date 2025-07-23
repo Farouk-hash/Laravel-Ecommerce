@@ -9,6 +9,7 @@ use App\Models\Chat;
 use \Illuminate\Support\Facades\Cache;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Controller
 {
@@ -27,6 +28,37 @@ class User extends Controller
         $wish_list_count = $cart_counts->wish_list_count;
         $orders_count = $cart_counts->orders_count;
         return view('Application.users.get-user-profile' , compact('user_informations' , 'orders_count' , 'wish_list_count'));
+    }
+
+    public function update_profile_form(int $user_id){
+        $user_information = \App\Models\User::findOrFail($user_id);
+        return view('application.users.get-user-update-profile' , compact('user_information'));
+    }
+
+    public function update_profile(Request $request , int $user_id){
+        $user_information = \App\Models\User::findOrFail($user_id);
+        
+        $validated = $request->validate([
+            'name'=>['string','required'],
+            'phone'=>['string', 'required'],
+            'email'=>['string','required']
+        ]);
+        
+        if($request->hasFile('avatar')){
+            if ($user_information->file_object_key && Storage::disk('public')->exists($user_information->file_object_key)) {
+                Storage::disk('public')->delete($user_information->file_object_key);
+            }
+            
+            // ✅ Store the new image
+            $file = $request->file('avatar');
+            $path = $file->store('users', 'public');
+            
+            // Update image fields
+            $validated['image'] = asset('storage/' . $path);
+            $validated['file_object_key'] = $path;
+        }
+        $user_information->update($validated);
+        return redirect()->route('user.profile');
     }
 
     public function messages(){
