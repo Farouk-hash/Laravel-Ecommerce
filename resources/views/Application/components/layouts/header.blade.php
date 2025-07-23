@@ -61,12 +61,9 @@
 							<ul>
 								<li class="current-list-item"><a href="{{route('Home')}}">{{trans('index.Home')}}</a></li>
 
-								<li><a href="#">{{trans('index.products')}}</a>
-									<ul class="sub-menu">
-										<li><a href="{{route('products')}}">{{trans('index.all_products')}}</a></li>
-										<li><a href="{{route('product-form')}}">{{trans('index.create_new')}}</a></li>
-									</ul>
+								<li><a href="{{route('products')}}">{{trans('index.products')}}</a>
 								</li>
+								
 								<li><a href="{{route('categories')}}">{{trans('index.categories')}}</a></li>
 								
 								<li><a href="news.html">{{trans('index.news')}}</a>
@@ -122,7 +119,11 @@
 
 								<li>
 									<div class="header-icons">
+										
+
+										
 										@auth
+										
 										<a class="shopping-cart" href="#">
 											(<span style="color: #F28123;">{{auth()->user()->carts()->where('finished','==' ,false)
 											->where('save_later','=',$cart_count)->count()}}</span>)
@@ -134,8 +135,11 @@
 											<li><a href="{{route('checkout.checkout-form' , ['show_save_later'=>1 , 'check_out_form_history'=>1]) }}">Check Out</a></li>
 											<li><a href="{{route('carts.carts-view')}}">History</a></li>
 										</ul>
+										<a class="mobile-hide search-bar-icon" href="{{route('user.profile')}}"><i class="fas fa-user"></i></a>
+
 										@endauth
 										<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+									
 									</div>
 								</li>
 							</ul>

@@ -41,7 +41,9 @@
                         <td>{{ \Carbon\Carbon::parse($product->created_at)->toDateString() }}</td>
 
                         <td style="display: flex; justify-content: center; align-items: center; gap: 5px;">
-                            <!-- Remove Button -->
+                           
+                            @if (optional(Auth::user())->role === 'admin')
+                             <!-- Remove Button -->
                             <form
                                 action="{{ route('products.delete', $product->id) }}"
                                 method="POST"
@@ -54,7 +56,7 @@
                                     <span class="small">{{trans('index.remove')}}</span>
                                 </button>
                             </form>
-
+                            
                             <!-- Edit Button -->
                             <a
                                 href="{{ route('products.edit-form', $product->id) }}"
@@ -65,6 +67,18 @@
                                 <i class="fas fa-edit"></i>
                                 <span class="small">{{trans('index.edit')}}</span>
                             </a>
+                            
+                            <a
+                                                        href="{{ route('products.show_images', $product->id) }}"
+                                                        class="btn btn-success btn-sm d-flex align-items-center gap-1"
+                                                        role="button"
+                                                        style="width: 100px; text-align: center;"
+                                                    >
+                                                        <i class="fas fa-image"></i>
+                                                        <span class="small">{{trans('index.images')}}</span>
+                            </a>
+                            @endif 
+
                             <!-- Show Button -->
                             <a
                                 href="{{ route('product-details', $product->id) }}"
@@ -75,16 +89,6 @@
                                 <i class="fas fa-eye"></i>
                                 <span class="small">{{trans('index.show')}}</span>
                             </a>
-
-                           <a
-                            href="{{ route('products.show_images', $product->id) }}"
-                            class="btn btn-success btn-sm d-flex align-items-center gap-1"
-                            role="button"
-                            style="width: 100px; text-align: center;"
-                        >
-                            <i class="fas fa-image"></i>
-                            <span class="small">{{trans('index.images')}}</span>
-                        </a>
 
                         </td>
 

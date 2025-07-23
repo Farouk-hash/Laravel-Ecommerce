@@ -38,7 +38,7 @@
 							</a>
 
 							<!-- 2) Remove Button (red, small) -->
-							<form
+							{{-- <form
 							action="{{ route('products.delete', $product->id) }}"
 							method="POST"
 							style="display: inline;"
@@ -52,17 +52,17 @@
 							<i class="fas fa-trash"></i>
 							<span class="small">{{trans('index.remove')}}</span>
 							</button>
-							</form>
+							</form> --}}
 
 							<!-- 3) Edit Button (blue, small) -->
-							<a
+							{{-- <a
 							href="{{ route('products.edit-form', $product->id) }}"
 							class="btn btn-primary btn-sm"
 							role="button"
 							>
 							<i class="fas fa-edit"></i>
 							<span class="small">{{trans('index.edit')}}</span>
-							</a>
+							</a> --}}
 
 
 						</div>

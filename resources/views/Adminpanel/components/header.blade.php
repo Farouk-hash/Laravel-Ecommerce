@@ -95,6 +95,9 @@
           <ul class="treeview-menu">
             <li><a class="treeview-item" href="{{route('admin.categories.list-categories')}}"><i class="icon fa fa-circle-o"></i>Categories</a></li>
             <li><a class="treeview-item" href="{{route('admin.products.list-products')}}"><i class="icon fa fa-circle-o"></i>Products</a></li>
+            <li><a class="treeview-item" href="{{route('admin.products.list-products')}}"><i class="icon fa fa-circle-o"></i>Questions</a></li>
+            <li><a class="treeview-item" href="{{route('admin.products.list-products')}}"><i class="icon fa fa-circle-o"></i>Reviews</a></li>
+
           </ul>
         </li>
         

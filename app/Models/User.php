@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Cache;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -45,6 +46,8 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    
     public function carts()
     {
         return $this->hasMany(Cart::class);
@@ -59,5 +62,9 @@ class User extends Authenticatable
     }
     public function billing_addresses(){
         return $this->hasMany(BillingAdresses::class , 'user_id');
+    }
+
+    public function isOnline(){
+        return cache::has('user-is-online-'.$this->id);
     }
 }
