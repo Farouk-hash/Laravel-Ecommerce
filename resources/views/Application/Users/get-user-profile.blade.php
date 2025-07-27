@@ -405,6 +405,9 @@
         .badge-success {
             background-color: var(--accent-color) !important;
         }
+        .badge-failed {
+            background-color: #dc3545 !important;
+        }
         
         .badge-info {
             background-color: var(--primary-color) !important;
@@ -499,7 +502,7 @@
                     </div>
                 </div>
                 <div class="col-md-6 text-md-right mt-3 mt-md-0">
-                    <span class="badge badge-success mr-2">Verified Account</span>
+                    <span class="badge badge-{{$user_informations->email_verified_at ? 'success' : 'failed'}} mr-2">{{$user_informations->email_verified_at ? '' : 'Un'}}Verified Account</span>
                     <span class="badge badge-info">Premium Member</span>
                 </div>
             </div>

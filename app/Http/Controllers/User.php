@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\SendMessage;
 use App\Events\Typing;
 use App\Events\UserChatStatus;
+use App\Events\UserProfileUpdated;
 use App\Models\Chat;
 use \Illuminate\Support\Facades\Cache;
 use Illuminate\Http\Request;
@@ -15,8 +16,8 @@ class User extends Controller
 {
     public function index(){
         // get user infomrations ; 
-        $user_id = Auth::id();
         
+        $user_id = Auth::id() ;
         $user_informations = \App\Models\User::with(['billing_addresses'])->find($user_id);
         $cart_counts = \App\Models\Cart::where('user_id', $user_id)
             ->selectRaw('
@@ -27,7 +28,8 @@ class User extends Controller
 
         $wish_list_count = $cart_counts->wish_list_count;
         $orders_count = $cart_counts->orders_count;
-        return view('Application.users.get-user-profile' , compact('user_informations' , 'orders_count' , 'wish_list_count'));
+        return view('Application.users.get-user-profile' , 
+        compact('user_informations' , 'orders_count' , 'wish_list_count'));
     }
 
     public function update_profile_form(int $user_id){
@@ -58,7 +60,20 @@ class User extends Controller
             $validated['file_object_key'] = $path;
         }
         $user_information->update($validated);
-        return redirect()->route('user.profile');
+        event(new UserProfileUpdated($user_information));
+        return redirect()->route('user.profile' );
+    }
+
+    public function verify($user_id , $hashed_email){
+        $user = \App\Models\User::findOrFail($user_id);
+        if (hash('sha256', $user->email) !== $hashed_email) {
+            abort(403, 'Invalid verification link');
+        }
+        $user->update(['email_verified_at' => now()]);
+        
+        Auth::login($user);
+
+        return redirect()->route('Home');
     }
 
     public function messages(){

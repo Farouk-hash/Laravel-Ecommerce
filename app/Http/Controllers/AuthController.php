@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UserSubcriber;
 use App\Models\User;
 use Auth;
 use Hash;
@@ -36,17 +37,20 @@ class AuthController extends Controller
         ],
         ]);
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => $request->input('password'), // password will be hashed through User::Model Via Casts()'password' => 'hashed',
+
         ]);
 
         Auth::login($user);
         // Regenerate session for security
         $request->session()->regenerate();
+
+        event(new UserSubcriber($user));
     
         // Redirect to intended URL or default to Home
-        return redirect()->intended(route('Home'));                
+        return redirect()->intended(route('user.profile'));                
     }
 
     public function login(Request $request)
@@ -57,6 +61,11 @@ class AuthController extends Controller
         ]);
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+            $credentials_object = (object)$credentials ; 
+            $user = User::where('email' , $credentials_object->email)->first();
+            if($user->email_verified_at == null){
+                event(new UserSubcriber($user));
+            }
             return redirect()->intended(route('Home'));
 
         }

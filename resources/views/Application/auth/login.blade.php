@@ -20,8 +20,11 @@
       <form action="{{route('auth.login.submit')}}" method="POST">
         @csrf
         
+        @error('email')
+            <span style="color:red;">{{$message}}</span>
+        @enderror
         <label for="email">{{trans('index.email')}}</label>
-        <input type="email" id="email" name="email" required />
+        <input type="email" id="email" name="email" value = "{{old('email')}}" required />
         
         <label for="password">{{trans('index.password')}}</label>
         <div class="password-container">

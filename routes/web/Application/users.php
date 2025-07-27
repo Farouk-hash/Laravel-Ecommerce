@@ -21,6 +21,8 @@ Route::prefix('users')->controller(AuthController::class)->group(function() {
 
 Route::prefix('user')->controller(User::class)->group(function(){
     Route::get('/' , 'index')->name('user.profile');
+    Route::get('/email/verify/{user_id}/{hash}' , 'verify')->name('user.email.verify');
+
     Route::get('/profile/{user_id}' , 'update_profile_form')->name('user.get-update-profile');
     Route::put('/profile/{user_id}' , 'update_profile')->name('user.update-profile');
  

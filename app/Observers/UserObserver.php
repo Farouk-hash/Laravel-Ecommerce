@@ -27,7 +27,7 @@ class UserObserver
                 $originalValue = $user->getOriginal($key);
                 $logDetails[] = "{$key}: Had changed from {$originalValue} to {$value}" ;
             }
-            $logMessage = "User updated (Email: {$user->email}) - Changes: " . implode(', ', $logDetails);
+            $logMessage = "CameFrom Observer: User updated (Email: {$user->email}) - Changes: " . implode(', ', $logDetails);
             Log::info($logMessage);
         }
     }
